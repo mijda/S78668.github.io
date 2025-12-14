@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Bento Grid Landing Page - MIJDA AUFA</title>
+    <title>Student Bento Grid Landing Page - MIJDA AUFA (Updated)</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     
     <style>
         /* CSS Reset and Base Styles */
         :root {
-            /* Rule 4: Clean, scientific, and modern color palette */
+            /* Clean, scientific, and modern color palette */
             --color-white: #ffffff;
             --color-light-grey: #f0f2f5; /* Background */
             --color-medium-grey: #e4e6eb; /* Card/Border */
             --color-dark-grey: #3c4043; /* Text */
-            /* UPDATED: Deep Ocean Blue Accent */
-            --color-accent: #004a7c; 
+            --color-accent: #004a7c; /* Deep Ocean Blue Accent */
             --color-secondary-text: #606770;
             --border-radius: 12px;
             --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -39,9 +38,9 @@
         .bento-grid-container {
             display: grid;
             gap: 20px;
-            max-width: 1200px; /* Desktop width constraint */
+            max-width: 1200px; 
             margin: 0 auto;
-            /* Default desktop grid layout (3 columns) */
+            /* UPDATED: Now 7 cards. Layout: Card 1 (2x2), Card 2, 3 (1x1), Card 4, 5, 7 (1x1), Card 6 (3x1) */
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: auto;
         }
@@ -56,12 +55,14 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            /* Tweak 3: Subtle hover effect setup */
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s;
         }
 
+        /* Tweak 3: Subtle hover effect implementation (Scale up slightly) */
         .bento-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transform: scale(1.02); /* Subtle zoom */
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
         }
         
         /* Typography */
@@ -94,7 +95,7 @@
             margin-bottom: 5px;
         }
 
-        /* Card Specific Layouts (Desktop Sizing) */
+        /* Card Specific Layouts */
 
         /* Card 1 (Profile): Large box (2x2) */
         #card-profile {
@@ -116,6 +117,7 @@
             font-weight: 500;
         }
 
+        /* Functional Links Styling */
         .social-links a {
             display: inline-block;
             margin-right: 15px;
@@ -126,7 +128,7 @@
         }
 
         .social-links a:hover {
-            color: #003050; /* Darker accent on hover */
+            color: #003050; 
             text-decoration: underline;
         }
 
@@ -134,16 +136,14 @@
         #card-playlist {
             grid-column: 1 / -1; /* Spans all 3 columns */
             min-height: 150px;
-            background-color: rgba(0, 74, 124, 0.05); /* Light accent background */
+            background-color: rgba(0, 74, 124, 0.05); 
             display: flex;
             align-items: center;
         }
         
-        /* Card 2, 3, 4, 5 defaults to 1x1 or 1x2 sizing */
-        
-        /* Card 3 (Tech Stack): Medium box (1x2) */
-        #card-tech-stack {
-            grid-row: span 1; 
+        /* New Card 7 (Reflection) is placed on the second row, slot 3 */
+        #card-reflection {
+             /* This will naturally fall next to the Hobby card (Card 5) on the 2nd row */
         }
 
         /* Rule 2: Fully Responsive Media Query (Mobile) */
@@ -170,6 +170,12 @@
             
             #card-playlist {
                 min-height: 100px;
+            }
+            
+            /* Remove transform on mobile to avoid layout issues */
+            .bento-card:hover {
+                transform: none; 
+                box-shadow: var(--shadow-light);
             }
             
             h2 {
@@ -199,16 +205,16 @@
             </div>
             <div class="social-links">
                 <p>Quick Links:</p>
-                <a href="#">LinkedIn</a>
-                <a href="#">GitHub</a>
-                <a href="#">UMT Portal</a>
+                <a href="#" target="_blank">LinkedIn</a>
+                <a href="https://github.com/S78668" target="_blank">GitHub</a>
+                <a href="#" target="_blank">UMT Portal</a>
             </div>
         </div>
 
         <div id="card-location" class="bento-card">
             <h2>📍 Current Location</h2>
             <div class="large-text">UMT, Kuala Nerus</div>
-            <p class="card-content">Local Time: 2:31 PM (+08)</p>
+            <p class="card-content">Local Time: 2:59 PM (+08)</p>
         </div>
 
         <div id="card-tech-stack" class="bento-card">
@@ -232,13 +238,17 @@
             <div class="large-text">Brisk walks at Pantai UMT</div>
             <p class="card-content">A simple activity for mental clarity and coastal appreciation.</p>
         </div>
+        
+        <div id="card-reflection" class="bento-card">
+            <h2>💡 Why Food Tech Matters in Malaysia</h2>
+            <div class="large-text">Sustainable Food Security</div>
+            <p class="card-content">Sustainable food security is crucial for our future. By optimizing local processing methods, we can reduce waste and improve nutrition.</p>
+        </div>
 
         <div id="card-playlist" class="bento-card">
             <h2>🎧 Study Soundtrack (Playlist)</h2>
             <div class="large-text">Lo-Fi Beats for Deep Focus & Research Flow</div>
-            <p class="card-content">Placeholder for an embedded music player/widget.</p>
-        </div>
-
+           <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/6IPwKM3fUUzlElbvKw2sKl?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
 
 </body>
